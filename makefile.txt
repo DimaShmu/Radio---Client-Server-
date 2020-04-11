@@ -1,0 +1,22 @@
+CC=gcc
+
+CFLAGS  = -g -Wall -pthread -lpthread
+
+# the build target executable:
+#TARGET = radio_control
+TARGET = radio_server
+# define the C sorce files
+#SRCS=radio_control.c
+SRCS=radio_server.c
+# define the C objects files
+OBJS =$(SRCS:.c=.o) 
+# clean
+RM := rm -rf
+  
+$(TARGET): $(OBJS) 
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(RM) *.o
+.cpp.o: 
+	$(CC) $(CFLAGS) -c $< -o $@
+clean:
+	$(RM) $(TARGET) *.o *~
